@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Classroom
 {
+    public function __construct()
+    {
+        $this->createDate = date('Y-m-d');
+    }
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -25,7 +30,7 @@ class Classroom
     public $name;
 
     /**
-     * @ORM\Column(type="date", nullable=false)
+     * @ORM\Column(type="string", nullable=false, name="create_date")
      */
     public $createDate;
 
