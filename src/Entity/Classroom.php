@@ -38,4 +38,20 @@ class Classroom
      * @ORM\Column(type="boolean", nullable=false)
      */
     public $active = false;
+
+    /**
+     * @return mixed
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param mixed $active
+     */
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
+    }
 }

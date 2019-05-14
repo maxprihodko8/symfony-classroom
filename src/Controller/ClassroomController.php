@@ -131,6 +131,61 @@ class ClassroomController extends AbstractController
     }
 
     /**
+     * @Route("/classrooms/{id}/state/active", methods={"PUT", "PATCH"}, name="set_state_active")
+     *
+     * @param $id
+     * @param ServiceEntityRepository $repository
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     *
+     * This method set the state of the classroom to active or otherwise throw exception
+     */
+    public function setActive($id, ServiceEntityRepository $repository, EntityManagerInterface $entityManager): Response
+    {
+        $classroom = $this->findModel($id, $repository);
+
+        if ($classroom->isActive()) {
+            return $this->json([
+                'error' => 'State is already active',
+            ], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        $classroom->setActive(true);
+
+        $entityManager->flush();
+
+        return $this->json([]);
+    }
+
+    /**
+     *
+     * @Route("/classrooms/{id}/state/inactive", methods={"PUT", "PATCH"}, name="set_state_not_active")
+     *
+     * @param $id
+     * @param ServiceEntityRepository $repository
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     *
+     * This method set the state of the classroom to inactive or otherwise throw exception
+     */
+    public function setNotActive($id, ServiceEntityRepository $repository, EntityManagerInterface $entityManager): Response
+    {
+        $classroom = $this->findModel($id, $repository);
+
+        if (!$classroom->isActive()) {
+            return $this->json([
+                'error' => 'State is already inactive',
+            ], JsonResponse::HTTP_BAD_REQUEST);
+        }
+
+        $classroom->setActive(false);
+
+        $entityManager->flush();
+
+        return $this->json([]);
+    }
+
+    /**
      * @param $id
      * @param ServiceEntityRepository $repository
      * @return Classroom
