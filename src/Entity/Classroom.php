@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="classroom")
+ *
+ * The classroom entity class.
  */
 class Classroom
 {
@@ -15,20 +17,20 @@ class Classroom
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    protected $name;
+    public $name;
 
     /**
      * @ORM\Column(type="date", nullable=false)
      */
-    protected $createDate;
+    public $createDate;
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
-    protected $active = false;
+    public $active = false;
 }

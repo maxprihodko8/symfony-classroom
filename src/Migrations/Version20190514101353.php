@@ -14,7 +14,7 @@ final class Version20190514101353 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Creates the classroom table';
     }
 
     public function up(Schema $schema) : void
