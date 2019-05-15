@@ -22,25 +22,73 @@ class Classroom
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    public $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    public $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string", nullable=false, name="create_date")
      */
-    public $createDate;
+    protected $createDate;
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
-    public $active = false;
+    protected $active = false;
 
     /**
      * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+     * @param mixed $createDate
+     */
+    public function setCreateDate($createDate): void
+    {
+        $this->createDate = $createDate;
+    }
+
+    /**
+     * @return boolean
      */
     public function isActive()
     {
