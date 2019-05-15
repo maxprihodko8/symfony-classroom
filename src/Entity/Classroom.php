@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -26,16 +27,25 @@ class Classroom
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
      */
     protected $name;
 
     /**
      * @ORM\Column(type="string", nullable=false, name="create_date")
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type("string")
      */
     protected $createDate;
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type("bool")
      */
     protected $active = false;
 
