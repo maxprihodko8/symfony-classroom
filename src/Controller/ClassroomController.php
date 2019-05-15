@@ -77,7 +77,7 @@ class ClassroomController extends AbstractController
             return $this->json($classroom, JsonResponse::HTTP_CREATED);
         }
 
-        return $this->json($form->getErrors(), JsonResponse::HTTP_BAD_REQUEST);
+        return $this->json($form->getErrors(true), JsonResponse::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -107,7 +107,7 @@ class ClassroomController extends AbstractController
             return $this->json($classroom);
         }
 
-        return $this->json($form->getErrors(), JsonResponse::HTTP_BAD_REQUEST);
+        return $this->json($form->getErrors(true), JsonResponse::HTTP_BAD_REQUEST);
     }
 
     /**
