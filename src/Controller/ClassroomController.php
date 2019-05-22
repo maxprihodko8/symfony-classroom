@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Classroom;
 use App\Forms\ClassroomType;
+use App\Repository\ClassroomRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,12 +24,12 @@ class ClassroomController extends AbstractController
     /**
      * @Route("/classrooms", name="index", methods={"GET"})
      *
-     * @param ServiceEntityRepository $repository
+     * @param ClassroomRepository $repository
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      *
      * Get the list of the classrooms.
      */
-    public function index(ServiceEntityRepository $repository): Response
+    public function index(ClassroomRepository $repository): Response
     {
         $classrooms = $repository->findAll();
 
@@ -39,12 +40,12 @@ class ClassroomController extends AbstractController
      * @Route("/classrooms/{id}", name="show", methods={"GET"})
      *
      * @param $id integer Classroom identifier
-     * @param ServiceEntityRepository $repository
+     * @param ClassroomRepository $repository
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      *
      * Get the specific classroom by the identifier.
      */
-    public function show($id, ServiceEntityRepository $repository): Response
+    public function show($id, ClassroomRepository $repository): Response
     {
         $classroom = $this->findModel($id, $repository);
 
@@ -85,13 +86,13 @@ class ClassroomController extends AbstractController
      *
      * @param $id
      * @param Request $request
-     * @param ServiceEntityRepository $repository
+     * @param ClassroomRepository $repository
      * @param EntityManagerInterface $entityManager
      * @return Response
      *
      * Update the classroom action by the identifier.
      */
-    public function update($id, Request $request, ServiceEntityRepository $repository, EntityManagerInterface $entityManager): Response
+    public function update($id, Request $request, ClassroomRepository $repository, EntityManagerInterface $entityManager): Response
     {
         $classroom = $this->findModel($id, $repository);
 
@@ -114,13 +115,13 @@ class ClassroomController extends AbstractController
      * @Route("/classrooms/{id}", methods={"DELETE"}, name="delete")
      *
      * @param $id
-     * @param ServiceEntityRepository $repository
+     * @param ClassroomRepository $repository
      * @param EntityManagerInterface $entityManager
      * @return Response
      *
      * Deletes the Classroom model by the identifier.
      */
-    public function delete($id, ServiceEntityRepository $repository, EntityManagerInterface $entityManager): Response
+    public function delete($id, ClassroomRepository $repository, EntityManagerInterface $entityManager): Response
     {
         $classroom = $this->findModel($id, $repository);
 
@@ -134,13 +135,13 @@ class ClassroomController extends AbstractController
      * @Route("/classrooms/{id}/state/active", methods={"PUT", "PATCH"}, name="set_state_active")
      *
      * @param $id
-     * @param ServiceEntityRepository $repository
+     * @param ClassroomRepository $repository
      * @param EntityManagerInterface $entityManager
      * @return Response
      *
      * This method set the state of the classroom to active or otherwise throw exception
      */
-    public function setActive($id, ServiceEntityRepository $repository, EntityManagerInterface $entityManager): Response
+    public function setActive($id, ClassroomRepository $repository, EntityManagerInterface $entityManager): Response
     {
         return $this->setModelActiveState($id, true, $repository, $entityManager);
     }
@@ -150,13 +151,13 @@ class ClassroomController extends AbstractController
      * @Route("/classrooms/{id}/state/inactive", methods={"PUT", "PATCH"}, name="set_state_not_active")
      *
      * @param $id
-     * @param ServiceEntityRepository $repository
+     * @param ClassroomRepository $repository
      * @param EntityManagerInterface $entityManager
      * @return Response
      *
      * This method set the state of the classroom to inactive or otherwise throw exception
      */
-    public function setNotActive($id, ServiceEntityRepository $repository, EntityManagerInterface $entityManager): Response
+    public function setNotActive($id, ClassroomRepository $repository, EntityManagerInterface $entityManager): Response
     {
         return $this->setModelActiveState($id, false, $repository, $entityManager);
     }
