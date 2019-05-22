@@ -22,6 +22,8 @@ class Classroom
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Assert\Type("number")
      */
     protected $id;
 
@@ -30,6 +32,7 @@ class Classroom
      *
      * @Assert\NotBlank()
      * @Assert\Type("string")
+     * @Assert\Length(255)
      */
     protected $name;
 
